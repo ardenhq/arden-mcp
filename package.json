@@ -1,0 +1,25 @@
+{
+  "name": "@arden/mcp",
+  "version": "0.1.0",
+  "description": "MCP server for managing Arden AI agent spend controls",
+  "type": "module",
+  "bin": {
+    "arden-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.6.0",
+    "conf": "^13.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
