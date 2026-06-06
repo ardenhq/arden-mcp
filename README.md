@@ -1,6 +1,6 @@
 # @arden/mcp
 
-MCP server for managing [Arden](https://arden.xyz) AI agent spend controls. Lets Claude Desktop, Cursor, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
+MCP server for managing [Arden](https://arden.xyz) AI agent spend controls. Lets Claude Desktop, Cursor, Claude Code, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
 
 ## Tools
 
@@ -8,8 +8,20 @@ MCP server for managing [Arden](https://arden.xyz) AI agent spend controls. Lets
 |---|---|
 | `arden_provision_agent` | Create a new agent with budget limits and vendor restrictions |
 | `arden_list_agents` | List all agents with budget usage |
-| `arden_agent_status` | Detailed status for a specific agent |
+| `arden_agent_status` | Detailed status and budget breakdown for a specific agent |
+| `arden_update_agent` | Update an agent's budgets, allowed vendors, or status |
 | `arden_fund_agent` | Get wallet address and USDC funding instructions |
+
+## Prerequisites
+
+Install the Arden CLI and log in to generate your API key:
+
+```bash
+npm install -g @arden/cli
+arden login
+```
+
+This writes your API key to `~/.arden/config.json`, which the MCP server reads automatically. You can skip the `ARDEN_API_KEY` env var if you've already done this.
 
 ## Usage with Claude Desktop
 
@@ -29,11 +41,23 @@ Add this to your Claude Desktop config (`~/Library/Application Support/Claude/cl
 }
 ```
 
-`ARDEN_API_KEY` is optional if you have already run `arden login` on the same machine — the server will fall back to `~/.arden/config.json`.
+`ARDEN_API_KEY` is optional if you have already run `arden login` on the same machine.
+
+## Usage with Claude Code
+
+```bash
+claude mcp add arden npx -y @arden/mcp
+```
+
+If you haven't run `arden login`, pass your key via env:
+
+```bash
+claude mcp add arden -e ARDEN_API_KEY=arden_live_... npx -y @arden/mcp
+```
 
 ## Usage with Cursor
 
-Add the same block to your Cursor MCP settings under **Settings → MCP**.
+Add the same block as the Claude Desktop config above to your Cursor MCP settings under **Settings → MCP**.
 
 ## Authentication
 
