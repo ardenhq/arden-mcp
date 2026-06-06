@@ -1,6 +1,8 @@
-# @arden/mcp
+# @ardensh/mcp
 
 MCP server for managing [Arden](https://arden.sh) AI agent spend controls. Lets Claude Desktop, Cursor, Claude Code, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
+
+> npm package: `@ardensh/mcp`
 
 ## Tools
 
@@ -32,7 +34,7 @@ Add this to your Claude Desktop config (`~/Library/Application Support/Claude/cl
   "mcpServers": {
     "arden": {
       "command": "npx",
-      "args": ["-y", "@arden/mcp"],
+      "args": ["-y", "@ardensh/mcp"],
       "env": {
         "ARDEN_API_KEY": "arden_live_..."
       }
@@ -46,13 +48,13 @@ Add this to your Claude Desktop config (`~/Library/Application Support/Claude/cl
 ## Usage with Claude Code
 
 ```bash
-claude mcp add arden npx -y @arden/mcp
+claude mcp add arden npx -y @ardensh/mcp
 ```
 
 If you haven't run `arden login`, pass your key via env:
 
 ```bash
-claude mcp add arden -e ARDEN_API_KEY=arden_live_... npx -y @arden/mcp
+claude mcp add arden -e ARDEN_API_KEY=arden_live_... npx -y @ardensh/mcp
 ```
 
 ## Usage with Cursor

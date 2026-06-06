@@ -1,5 +1,5 @@
 {
-  "name": "@arden/mcp",
+  "name": "@ardensh/mcp",
   "version": "0.1.0",
   "description": "MCP server for managing Arden AI agent spend controls",
   "type": "module",
