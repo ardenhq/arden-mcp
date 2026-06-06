@@ -1,6 +1,6 @@
 # @arden/mcp
 
-MCP server for managing [Arden](https://arden.xyz) AI agent spend controls. Lets Claude Desktop, Cursor, Claude Code, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
+MCP server for managing [Arden](https://arden.sh) AI agent spend controls. Lets Claude Desktop, Cursor, Claude Code, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
 
 ## Tools
 
