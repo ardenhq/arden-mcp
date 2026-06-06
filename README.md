@@ -1,33 +1,26 @@
 # @ardensh/mcp
 
-MCP server for managing [Arden](https://arden.sh) AI agent spend controls. Lets Claude Desktop, Cursor, Claude Code, and other MCP-compatible AI clients provision and manage Arden agents via natural language.
+Your AI agents can now pay for things — provision and manage them without leaving your AI assistant.
 
-> npm package: `@ardensh/mcp`
+Arden gives each agent its own wallet and a budget. This MCP server lets you set that up via natural language in Claude Desktop, Cursor, Claude Code, or any MCP-compatible client. No CLI needed.
+
+> "Provision a new agent called researcher with a $200 monthly budget, only allowed to call exa.ai and browserbase.io"
 
 ## Tools
 
 | Tool | Description |
 |---|---|
-| `arden_provision_agent` | Create a new agent with budget limits and vendor restrictions |
-| `arden_list_agents` | List all agents with budget usage |
+| `arden_provision_agent` | Create a new agent with a wallet, budget limits, and vendor restrictions |
+| `arden_list_agents` | List all agents with spend and budget usage |
 | `arden_agent_status` | Detailed status and budget breakdown for a specific agent |
-| `arden_update_agent` | Update an agent's budgets, allowed vendors, or status |
+| `arden_update_agent` | Adjust an agent's budgets, allowed vendors, or pause it |
 | `arden_fund_agent` | Get wallet address and USDC funding instructions |
 
-## Prerequisites
+## Setup
 
-Install the Arden CLI and log in to generate your API key:
+### 1. Add to Claude Desktop
 
-```bash
-npm install -g @arden/cli
-arden login
-```
-
-This writes your API key to `~/.arden/config.json`, which the MCP server reads automatically. You can skip the `ARDEN_API_KEY` env var if you've already done this.
-
-## Usage with Claude Desktop
-
-Add this to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+Add this to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
@@ -43,23 +36,17 @@ Add this to your Claude Desktop config (`~/Library/Application Support/Claude/cl
 }
 ```
 
-`ARDEN_API_KEY` is optional if you have already run `arden login` on the same machine.
+Get your `ARDEN_API_KEY` by running `arden login` (see below), or find it at [arden.sh](https://arden.sh).
 
-## Usage with Claude Code
-
-```bash
-claude mcp add arden npx -y @ardensh/mcp
-```
-
-If you haven't run `arden login`, pass your key via env:
+### 2. Add to Claude Code
 
 ```bash
 claude mcp add arden -e ARDEN_API_KEY=arden_live_... npx -y @ardensh/mcp
 ```
 
-## Usage with Cursor
+### 3. Add to Cursor
 
-Add the same block as the Claude Desktop config above to your Cursor MCP settings under **Settings → MCP**.
+Add the same block as the Claude Desktop config above to **Settings → MCP**.
 
 ## Authentication
 
@@ -68,7 +55,12 @@ The server looks for credentials in this order:
 1. `ARDEN_API_KEY` environment variable
 2. `~/.arden/config.json` (written by `arden login`)
 
-If neither is found, tool calls return a clear error message rather than crashing.
+If you've already installed the Arden CLI and run `arden login`, no env var is needed.
+
+```bash
+npm install -g @ardensh/cli
+arden login
+```
 
 ## Development
 
