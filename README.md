@@ -41,7 +41,13 @@ Get your `ARDEN_API_KEY` by running `arden login` (see below), or find it at [ar
 ### 2. Add to Claude Code
 
 ```bash
-claude mcp add arden -e ARDEN_API_KEY=arden_live_... npx -y @ardensh/mcp
+claude mcp add arden -- npx -y @ardensh/mcp
+```
+
+If you haven't run `arden login` on this machine, pass your key explicitly:
+
+```bash
+claude mcp add arden -e ARDEN_API_KEY=arden_live_... -- npx -y @ardensh/mcp
 ```
 
 ### 3. Add to Cursor
