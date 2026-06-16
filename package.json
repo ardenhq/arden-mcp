@@ -1,7 +1,7 @@
 {
   "name": "@ardensh/mcp",
-  "version": "0.1.2",
-  "description": "Give your AI agents a wallet and a budget from Claude, Cursor, or any MCP client. Provision agents, set spend limits, and manage vendor allowlists via natural language.",
+  "version": "0.1.3",
+  "description": "Give your AI agents a wallet, a budget, and the ability to pay — from Claude, Cursor, or any MCP client. Provision agents, execute payments, enforce budgets, and manage vendor allowlists via natural language.",
   "type": "module",
   "files": ["dist"],
   "bin": {

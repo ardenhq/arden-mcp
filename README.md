@@ -1,10 +1,10 @@
 # @ardensh/mcp
 
-Your AI agents can now pay for things — provision and manage them without leaving your AI assistant.
+Your AI agents can now pay for things — provision wallets, set budgets, and execute payments without leaving your AI assistant.
 
-Arden gives each agent its own wallet and a budget. This MCP server lets you set that up via natural language in Claude Desktop, Cursor, Claude Code, or any MCP-compatible client. No CLI needed.
+Arden gives each agent its own wallet and a budget. When the agent needs to pay, Arden checks the budget and vendor allowlist, then executes the payment on Base. This MCP server exposes the full payment lifecycle via natural language in Claude Desktop, Cursor, Claude Code, or any MCP-compatible client.
 
-> "Provision a new agent called researcher with a $200 monthly budget, only allowed to call exa.ai and browserbase.io"
+> "Pay $0.01 to exa.ai from my researcher agent"
 
 ## Tools
 
@@ -15,6 +15,9 @@ Arden gives each agent its own wallet and a budget. This MCP server lets you set
 | `arden_agent_status` | Detailed status and budget breakdown for a specific agent |
 | `arden_update_agent` | Adjust an agent's budgets, allowed vendors, or pause it |
 | `arden_fund_agent` | Get wallet address and USDC funding instructions |
+| `arden_pay` | Execute a payment from an agent wallet with budget enforcement |
+| `arden_check_payment` | Dry-run a payment check without moving money |
+| `arden_check_balance` | Read an agent's live USDC balance on Base |
 
 ## Setup
 
