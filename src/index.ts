@@ -7,6 +7,9 @@ import { listAgents } from './tools/list.js'
 import { agentStatus } from './tools/status.js'
 import { fundAgent } from './tools/fund.js'
 import { updateAgent } from './tools/update.js'
+import { pay } from './tools/pay.js'
+import { checkPayment } from './tools/check_payment.js'
+import { checkBalance } from './tools/check_balance.js'
 
 const server = new McpServer({
   name: 'arden',
@@ -80,6 +83,47 @@ server.tool(
   },
   async (input) => {
     const text = await updateAgent(input)
+    return { content: [{ type: 'text', text }] }
+  }
+)
+
+server.tool(
+  'arden_pay',
+  'Execute a payment from an agent wallet. Checks budget and vendor allowlist before paying.',
+  {
+    agent: z.string().describe('Name of the agent to pay from'),
+    vendor: z.string().describe('Vendor domain or name (e.g. "exa.ai")'),
+    amount: z.number().describe('Amount to pay in USD'),
+    to: z.string().describe('Vendor wallet address on Base (0x...)'),
+  },
+  async (input) => {
+    const text = await pay(input)
+    return { content: [{ type: 'text', text }] }
+  }
+)
+
+server.tool(
+  'arden_check_payment',
+  'Check if a payment would be allowed without executing it. Shows block reason if denied.',
+  {
+    agent: z.string().describe('Name of the agent to check'),
+    vendor: z.string().describe('Vendor domain or name (e.g. "exa.ai")'),
+    amount: z.number().describe('Amount in USD to check'),
+  },
+  async (input) => {
+    const text = await checkPayment(input)
+    return { content: [{ type: 'text', text }] }
+  }
+)
+
+server.tool(
+  'arden_check_balance',
+  'Check the USDC balance of an agent wallet on Base',
+  {
+    agent: z.string().describe('Name of the agent to check balance for'),
+  },
+  async ({ agent }) => {
+    const text = await checkBalance(agent)
     return { content: [{ type: 'text', text }] }
   }
 )

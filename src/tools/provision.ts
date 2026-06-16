@@ -1,5 +1,21 @@
 import axios from 'axios'
+import Conf from 'conf'
+import os from 'os'
 import { getApiKey, API_BASE } from '../auth.js'
+
+const agentKeyStore = new Conf({
+  projectName: 'arden',
+  cwd: os.homedir() + '/.arden',
+  configName: 'agent-keys',
+})
+
+export function saveAgentKey(name: string, agentKey: string): void {
+  agentKeyStore.set(name, agentKey)
+}
+
+export function getAgentKey(name: string): string | undefined {
+  return agentKeyStore.get(name) as string | undefined
+}
 
 export const provisionAgentSchema = {
   name: { type: 'string' as const, description: 'Agent name: 3-50 chars, alphanumeric + hyphens only' },
@@ -46,6 +62,7 @@ export async function provisionAgent(input: ProvisionInput): Promise<string> {
     })
 
     const { wallet_address, agent_key } = data
+    saveAgentKey(name, agent_key)
     return [
       `Agent "${name}" provisioned successfully.`,
       `Wallet address: ${wallet_address}`,
